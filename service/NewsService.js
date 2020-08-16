@@ -22,7 +22,7 @@ class NewsService {
 
 	async getNews(type, period = 7) {
 		const {data: response} = await axios.get(`${this.baseUrl}/${type}/${period}.json?api-key=${this.apiKey}`)
-		return response.results.map(nytPiece => Piece.createPiece(nytPiece))		
+		return response.results.map(nytPiece => Piece.createPiece(nytPiece)).filter(p => p !== null)
 	}
 }
 
